@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitget Analytics — Универсальная торговая платформа UEX</title>
+    <style>
+        :root {
+            --bg-color: #0b0e11;
+            --card-bg: #181a20;
+            --text-color: #eaecef;
+            --text-muted: #848e9c;
+            --primary-color: #00f0ff;
+            --primary-hover: #00b8cc;
+            --accent-color: #f0b90b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(24, 26, 32, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #2b2f36;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+        .logo span { color: var(--primary-color); }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-select {
+            background-color: #2b2f36;
+            color: #fff;
+            border: 1px solid #474f59;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 20px;
+            font-size: 14px;
+            outline: none;
+            font-weight: bold;
+        }
+
+        .btn-ref {
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-ref:hover { background-color: var(--primary-hover); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px 20px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #1e222a;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0 60px 0;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+        .hero .main-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .hero .main-btn:hover { transform: scale(1.03); }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #2b2f36;
+            border-radius: 8px;
+            padding: 25px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--primary-color); }
+        .card h3 { margin-bottom: 15px; color: #fff; }
+        .card p { color: var(--text-muted); font-size: 14px; }
+
+        .badge {
+            background-color: rgba(0, 240, 255, 0.1);
+            color: var(--primary-color);
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            background-color: #1c2026;
+            border: 1px solid #2b2f36;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .social-btn.instagram:hover { border-color: #e1306c; color: #e1306c; }
+        .social-btn.tiktok:hover { border-color: #00f2fe; color: #00f2fe; }
+        .social-btn.telegram:hover { border-color: #0088cc; color: #0088cc; }
+        .social-btn.facebook:hover { border-color: #1877f2; color: #1877f2; }
+        .social-btn.twitter:hover { border-color: #1da1f2; color: #1da1f2; }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid #1e222a;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Bitget<span>Analytics</span></a>
+            <div class="nav-container">
+                <select class="lang-select" id="langSelector" onchange="switchLanguage(this.value)">
+                    <option value="ru">RU</option>
+                    <option value="en">EN</option>
+                    <option value="es">ES</option>
+                </select>
+                <a href="https://partner.bitget.com/bg/vwmk5g3k" target="_blank" class="btn-ref" id="btn-header">Регистрация</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="hero">
+            <h1 id="hero-title">Универсальная платформа <span>Bitget UEX</span></h1>
+            <p id="hero-desc">Единая экосистема для профессиональной торговли: более 800 криптовалют, токенизированные активы (RWA), pre-IPO контракты и продвинутые AI-инструменты с доказанной 100% прозрачностью резервов.</p>
+            <a href="https://partner.bitget.com/bg/vwmk5g3k" target="_blank" class="main-btn" id="hero-btn">Забрать Welcome Pack до 6,200 USDT</a>
+        </section>
+
+        <section id="about">
+            <h2 id="about-title">Почему <span>Bitget</span>?</h2>
+            <div class="grid-3" id="about-grid"></div>
+        </section>
+
+        <section id="promo">
+            <h2 id="promo-title">Актуальные <span>Акции и Промо</span></h2>
+            <div class="grid-3" id="promo-grid"></div>
+        </section>
+
+        <section id="trading">
+            <h2 id="trading-title">Профессиональный <span>Трейдинг</span></h2>
+            <div class="grid-3" id="trading-grid"></div>
+        </section>
+
+        <section id="articles">
+            <h2 id="articles-title">Обучающие <span>Материалы</span></h2>
+            <div class="grid-3" id="articles-grid"></div>
+        </section>
+
+        <section id="social" style="text-align: center;">
+            <h2 id="social-title">Наши <span>Социальные Сети</span></h2>
+            <p id="social-desc" style="color: var(--text-muted); margin-bottom: 30px;">Подписывайтесь, чтобы оперативно получать сухую техническую аналитику и эксклюзивные инсайды рынка.</p>
+            <div class="social-grid">
+                <a href="#" target="_blank" class="social-btn instagram">Instagram</a>
+                <a href="#" target="_blank" class="social-btn tiktok">TikTok</a>
+                <a href="#" target="_blank" class="social-btn telegram">Telegram</a>
+                <a href="#" target="_blank" class="social-btn facebook">Facebook</a>
+                <a href="#" target="_blank" class="social-btn twitter">Twitter (X)</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p id="footer-risk">Предупреждение о рисках: Торговля цифровыми активами и фьючерсами сопряжена с высоким уровнем финансовых рисков. Прошлые результаты не гарантируют будущих доходов. Данный ресурс носит исключительно информационный характер и не является индивидуальной инвестиционной рекомендацией.</p>
+        <p style="margin-top: 15px;">&copy; 2026 Bitget Analytics. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                title: "Bitget Analytics — Универсальная торговая платформа UEX",
+                btnHeader: "Регистрация (Бонус 6200 USDT)",
+                heroTitle: "Универсальная платформа <span>Bitget UEX</span>",
+                heroDesc: "Единая экосистема для профессиональной торговли: более 800 криптовалют, токенизированные активы (RWA), pre-IPO контракты и продвинутые AI-инструменты с доказанной 100% прозрачностью резервов.",
+                heroBtn: "Забрать Welcome Pack до 6,200 USDT",
+                aboutTitle: "Почему <span>Bitget</span>?",
+                about: [
+                    { h: "Фонд защиты $300 млн+", p: "Второй по величине фонд защиты среди всех бирж мира. Ваши средства застрахованы от кибератак." },
+                    { h: "100% Proof of Reserves", p: "Ежемесячное подтверждение резервов на основе дерева Меркла. Обеспечение строго выше 100%." },
+                    { h: "Минимальные комиссии", p: "Базовая комиссия всего 0.1%. Дополнительная скидка 20% при оплате комиссий токеном BGB." }
+                ],
+                promoTitle: "Актуальные <span>Акции и Промо</span>",
+                promo: [
+                    { b: "Постоянная", h: "Welcome Pack 6,200 USDT", p: "Зарегистрируйтесь по нашей ссылке, пройдите KYC и получите пакеты на первый депозит и объем." },
+                    { b: "Аирдропы", h: "CandyBomb & PoolX", p: "Получайте новые перспективные токены абсолютно бесплатно за стекинг BGB или оборот на споте." },
+                    { b: "Новое", h: "Smarter Speed Challenge", p: "Участвуйте в регулярных турнирах биржи с гарантированными призовыми фондами для фьючерсных трейдеров." }
+                ],
+                tradingTitle: "Профессиональный <span>Трейдинг</span>",
+                trading: [
+                    { h: "Фьючерсы (USDT-M / COIN-M)", p: "Высоколиквидные контракты с плечом до 125х. Минимальный спред и мгновенное исполнение ордеров." },
+                    { h: "AI-Автоматизация & GetAgent", p: "Встроенные торговые роботы (Grid, DCA) и инструменты искусственного интеллекта для оптимизации стратегий." },
+                    { h: "Мастер Копитрейдинга", p: "Повторяйте сделки ведущих трейдеров платформы автоматически. Идеально для диверсификации рисков." }
+                ],
+                articlesTitle: "Обучающие <span>Материалы и Гайды</span>",
+                articles: [
+                    { b: "Механика рынка", h: "Как использовать Open Interest (OI)", p: "Разбор ключевого индикатора силы тренда. Как анализировать открытый интерес вместе с ценой для поиска крупных игроков." },
+                    { b: "Риск-менеджмент", h: "Расчет ставки финансирования (Funding Rate)", p: "Что такое фандинг, почему он критически важен при удержании позиций и как зарабатывать на арбитраже ставок." }
+                ],
+                socialTitle: "Наши <span>Социальные Сети</span>",
+                socialDesc: "Подписывайтесь, чтобы оперативно получать сухую техническую аналитику и эксклюзивные инсайды рынка.",
+                footerRisk: "Предупреждение о рисках: Торговля цифровыми активами и фьючерсами сопряжена с высоким уровнем финансовых рисков. Прошлые результаты не гарантируют будущих доходов. Данный ресурс носит исключительно информационный характер и не является индивидуальной инвестиционной рекомендацией."
+            },
+            en: {
+                title: "Bitget Analytics — Universal Trading Platform UEX",
+                btnHeader: "Register (6200 USDT Bonus)",
+                heroTitle: "Universal Platform <span>Bitget UEX</span>",
+                heroDesc: "A single ecosystem for professional trading: 800+ cryptocurrencies, tokenized real-world assets (RWA), pre-IPO contracts, and advanced AI tools with 100% proven proof of reserves.",
+                heroBtn: "Claim Welcome Pack up to 6,200 USDT",
+                aboutTitle: "Why choose <span>Bitget</span>?",
+                about: [
+                    { h: "$300M+ Protection Fund", p: "The second-largest protection fund in the world. Your assets are fully secured against any security threats." },
+                    { h: "100% Proof of Reserves", p: "Monthly Merkle tree reserve updates. Asset coverage ratio strictly exceeds 100% at all times." },
+                    { h: "Lowest Commissions", p: "Base fee is just 0.1%. Get an extra 20% discount on trading fees by paying with BGB token." }
+                ],
+                promoTitle: "Current <span>Promotions & Events</span>",
+                promo: [
+                    { b: "Ongoing", h: "Welcome Pack 6,200 USDT", p: "Register via our link, complete KYC, and claim rewards for your initial deposit and trading volume." },
+                    { b: "Airdrops", h: "CandyBomb & PoolX", p: "Earn new promising crypto tokens for free by staking BGB or completes trading tasks." },
+                    { b: "New", h: "Smarter Speed Challenge", p: "Join regular exchange tournaments with guaranteed prize pools for active futures traders." }
+                ],
+                tradingTitle: "Professional <span>Trading Сenter</span>",
+                trading: [
+                    { h: "Futures (USDT-M / COIN-M)", p: "High-liquidity contracts with leverage up to 125x. Ultra-low spreads and instant order execution." },
+                    { h: "AI-Automation & GetAgent", p: "Utilize built-in grid/DCA bots and cutting-edge AI assistants to optimize your market strategies." },
+                    { h: "Master Copy Trading", p: "Replicate the positions of top-tier professional traders automatically to easily diversify risks." }
+                ],
+                articlesTitle: "Educational <span>Materials & Guides</span>",
+                articles: [
+                    { b: "Market Mechanics", h: "How to read Open Interest (OI)", p: "A deep dive into trend strength. Learn to analyze OI changes alongside price action to track smart money." },
+                    { b: "Risk Management", h: "Understanding Funding Rates", p: "What is funding, why it matters for holding positions, and how to utilize rate differences for arbitrage." }
+                ],
+                socialTitle: "Our <span>Social Media</span>",
+                socialDesc: "Follow us to receive dry technical market data, order flow analytics, and exclusive insights.",
+                footerRisk: "Risk Warning: Digital asset and futures trading involve substantial financial risk. Past performance is not indicative of future results. This resource is for informational purposes only and does not constitute investment advice."
+            },
+            es: {
+                title: "Bitget Analytics — Plataforma de Trading Universal UEX",
+                btnHeader: "Registrarse (Bono 6200 USDT)",
+                heroTitle: "Plataforma Universal <span>Bitget UEX</span>",
+                heroDesc: "Un ecosistema unificado para el trading profesional: más de 800 criptomonedas, activos del mundo real (RWA), contratos pre-IPO y herramientas avanzadas de IA con Prueba de Reservas del 100%.",
+                heroBtn: "Reclamar Welcome Pack hasta 6,200 USDT",
+                aboutTitle: "¿Por qué elegir <span>Bitget</span>?",
+                about: [
+                    { h: "Fondo de Protección de $300M+", p: "El segundo fondo de protección más grande del mundo. Tus fondos están respaldados ante incidentes de ciberseguridad." },
+                    { h: "100% Prueba de Reservas", p: "Verificación mensual mediante árbol de Merkle. El ratio de garantía de los activos supera estrictamente el 100%." },
+                    { h: "Las comisiones más bajas", p: "Comisión base de solo 0.1%. Obtén un 20% de descuento adicional al pagar tus tarifas de trading con el token BGB." }
+                ],
+                promoTitle: "<span>Promociones</span> Activas",
+                promo: [
+                    { b: "Permanente", h: "Welcome Pack de 6,200 USDT", p: "Regístrate con nuestro enlace, completa el KYC y desbloquea bonos por tu primer depósito y volumen." },
+                    { b: "Airdrops", h: "CandyBomb & PoolX", p: "Consigue nuevos tokens prometedores completamente gratis haciendo staking de BGB o tradeando en spot." },
+                    { b: "Nuevo", h: "Smarter Speed Challenge", p: "Participa en torneos regulares de la plataforma con fondos de premios гарантиizados para traders de futuros." }
+                ],
+                tradingTitle: "<span>Trading</span> Profesional",
+                trading: [
+                    { h: "Futuros (USDT-M / COIN-M)", p: "Contratos de alta liquidez con apalancamiento de hasta 125x. Spreads mínimos y ejecución inmediata." },
+                    { h: "Automatización con IA & GetAgent", p: "Utiliza bots de trading integrados (Grid, DCA) и herramientas avanzadas de IA para optimizar tus estrategias." },
+                    { h: "Master Copy Trading", p: "Replica las operaciones de los principales traders de la plataforma de forma automática. Ideal para diversificar." }
+                ],
+                articlesTitle: "Materiales <span>Educativos y Guías</span>",
+                articles: [
+                    { b: "Mecánica del Mercado", h: "Cómo usar el Interés Abierto (OI)", p: "Análisis del indicador clave de fuerza de tendencia. Cómo evaluar el interés abierto junto al precio para seguir a las ballenas." },
+                    { b: "Gestión de Riesgos", h: "Cálculo de la Tasa de Financiación", p: "Qué es el funding, por qué es crítico al mantener posiciones y cómo generar ganancias mediante arbitraje de tasas." }
+                ],
+                socialTitle: "Nuestras <span>Redes Sociales</span>",
+                socialDesc: "Síguenos para recibir analítica técnica directa, datos del libro de órdenes e información clave del mercado.",
+                footerRisk: "Advertencia de riesgo: El trading de activos digitales y futuros implica un alto nivel de riesgo financiero. Los resultados pasados no garantizan rendimientos futuros. Este recurso es puramente informativo y no constituye una recomendación de inversión."
+            }
+        };
+
+        function switchLanguage(lang) {
+            const data = translations[lang];
+            if (!data) return;
+
+            document.title = data.title;
+            document.getElementById('btn-header').innerText = data.btnHeader;
+            document.getElementById('hero-title').innerHTML = data.heroTitle;
+            document.getElementById('hero-desc').innerText = data.heroDesc;
+            document.getElementById('hero-btn').innerText = data.heroBtn;
+            document.getElementById('about-title').innerHTML = data.aboutTitle;
+            document.getElementById('promo-title').innerHTML = data.promoTitle;
+            document.getElementById('trading-title').innerHTML = data.tradingTitle;
+            document.getElementById('articles-title').innerHTML = data.articlesTitle;
+            document.getElementById('social-title').innerHTML = data.socialTitle;
+            document.getElementById('social-desc').innerText = data.socialDesc;
+            document.getElementById('footer-risk').innerText = data.footerRisk;
+
+            let aboutHtml = '';
+            data.about.forEach(item => {
+                aboutHtml += '<div class="card"><h3>' + item.h + '</h3><p>' + item.p + '</p></div>';
+            });
+            document.getElementById('about-grid').innerHTML = aboutHtml;
+
+            let promoHtml = '';
+            data.promo.forEach(item => {
+                promoHtml += '<div class="card"><div class="badge">' + item.b + '</div><h3>' + item.h + '</h3><p>' + item.p + '</p></div>';
+            });
+            document.getElementById('promo-grid').innerHTML = promoHtml;
+
+            let tradingHtml = '';
+            data.trading.forEach(item => {
+                tradingHtml += '<div class="card"><h3>' + item.h + '</h3><p>' + item.p + '</p></div>';
+            });
+            document.getElementById('trading-grid').innerHTML = tradingHtml;
+
+            let articlesHtml = '';
+            data.articles.forEach(item => {
+                articlesHtml += '<div class="card"><div class="badge">' + item.b + '</div><h3>' + item.h + '</h3><p>' + item.p + '</p></div>';
+            });
+            document.getElementById('articles-grid').innerHTML = articlesHtml;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const userLang = navigator.language || navigator.userLanguage;
+            let defaultLang = 'en';
+            
+            if (userLang.includes('ru')) {
+                defaultLang = 'ru';
+            } else if (userLang.includes('es')) {
+                defaultLang = 'es';
+            }
+            
+            document.getElementById('langSelector').value = defaultLang;
+            switchLanguage(defaultLang);
+        });
+    </script>
+</body>
+</html>
