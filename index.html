@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitget Analytics — Универсальная торговая платформа UEX</title>
+    <style>
+        :root {
+            --bg-color: #0b0e11;
+            --card-bg: #181a20;
+            --text-color: #eaecef;
+            --text-muted: #848e9c;
+            --primary-color: #00f0ff;
+            --primary-hover: #00b8cc;
+            --accent-color: #f0b90b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(24, 26, 32, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #2b2f36;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+        .logo span { color: var(--primary-color); }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--primary-color); }
+
+        .btn-ref {
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-ref:hover { background-color: var(--primary-hover); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px 20px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #1e222a;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        h2 span { color: var(--primary-color); }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0 60px 0;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .hero h1 span { color: var(--primary-color); }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+        .hero .main-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .hero .main-btn:hover { transform: scale(1.03); }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #2b2f36;
+            border-radius: 8px;
+            padding: 25px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--primary-color); }
+        .card h3 { margin-bottom: 15px; color: #fff; }
+        .card p { color: var(--text-muted); font-size: 14px; }
+
+        .badge {
+            background-color: rgba(0, 240, 255, 0.1);
+            color: var(--primary-color);
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid #1e222a;
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Bitget<span>Analytics</span></a>
+            <nav>
+                <a href="#about">Преимущества</a>
+                <a href="#promo">Акции</a>
+                <a href="#trading">Трейдинг</a>
+                <a href="#articles">Статьи</a>
+                <a href="#news">Новости</a>
+            </nav>
+            <a href="ССЫЛКА_НА_ТВОЮ_РЕФКУ" target="_blank" class="btn-ref">Регистрация (Бонус 6200 USDT)</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="hero">
+            <h1>Универсальная платформа <span>Bitget UEX</span></h1>
+            <p>Единая экосистема для профессиональной торговли: более 800 криптовалют, токенизированные активы (RWA), pre-IPO контракты и продвинутые AI-инструменты с доказанной 100% прозрачностью резервов.</p>
+            <a href="ССЫЛКА_НА_ТВОЮ_РЕФКУ" target="_blank" class="main-btn">Забрать Welcome Pack до 6,200 USDT</a>
+        </section>
+
+        <section id="about">
+            <h2>Почему <span>Bitget</span>?</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Фонд защиты $300 млн+</h3>
+                    <p>Второй по величине фонд защиты среди всех бирж мира. Ваши средства полностью застрахованы от непредвиденных кибератак и рыночных форс-мажоров.</p>
+                </div>
+                <div class="card">
+                    <h3>100% Proof of Reserves</h3>
+                    <p>Ежемесячное обновление подтверждения резервов на основе дерева Меркла. Коэффициент обеспечения всех пользовательских активов строго превышает 100%.</p>
+                </div>
+                <div class="card">
+                    <h3>Минимальные комиссии</h3>
+                    <p>Базовая комиссия составляет всего 0.1%. При использовании внутреннего токена BGB вы получаете автоматическую дополнительную скидку 20%.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="promo">
+            <h2>Актуальные <span>Акции и Промо</span></h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="badge">Постоянная</div>
+                    <h3>Welcome Pack 6,200 USDT</h3>
+                    <p>Зарегистрируйтесь по нашей ссылке, пройдите базовую верификацию KYC и заберите приветственные пакеты на первый депозит и объемы торгов.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Аирдропы</div>
+                    <h3>CandyBomb & PoolX</h3>
+                    <p>Получайте новые перспективные токены абсолютно бесплатно за стекинг BGB или выполнение простейших торговых задач на споте.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Новое</div>
+                    <h3>Smarter Speed Challenge</h3>
+                    <p>Принимайте участие в регулярных турнирах биржи с гарантированными призовыми пулами для активных трейдеров фьючерсной секции.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trading">
+            <h2>Профессиональный <span>Трейдинг</span></h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Фьючерсы (USDT-M / COIN-M)</h3>
+                    <p>Высоколиквидные контракты с кредитным плечом до 125х. Минимальный спред, отсутствие проскальзываний и мгновенное исполнение ордеров.</p>
+                </div>
+                <div class="card">
+                    <h3>AI-Автоматизация & GetAgent</h3>
+                    <p>Используйте встроенных торговых роботов (Grid, DCA) и передовые инструменты искусственного интеллекта для оптимизации торговых стратегий.</p>
+                </div>
+                <div class="card">
+                    <h3>Мастер Копитрейдинга</h3>
+                    <p>Повторяйте сделки ведущих трейдеров платформы в автоматическом режиме. Идеальный инструмент для диверсификации рисков новичков.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles">
+            <h2>Обучающие <span>Материалы и Гайды</span></h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="badge">Механика рынка</div>
+                    <h3>Как использовать Open Interest (OI) в торговле фьючерсами</h3>
+                    <p>Разбор ключевого индикатора силы тренда. Как анализировать изменение открытого интереса вместе с ценой для поиска крупных игроков.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Риск-менеджмент</div>
+                    <h3>Расчет ставки финансирования (Funding Rate)</h3>
+                    <p>Что такое фандинг, почему он становится критически важным при удержании позиций и как зарабатывать на арбитраже ставок.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>Динамические <span>Новости и Аналитика</span></h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="badge">Макроэкономика</div>
+                    <h3>Влияние геополитической нестабильности на ликвидность BTC</h3>
+                    <p>Сухой технический разбор текущих обострений на мировой арене и реакция стакана ордеров на ключевых криптобиржах.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Листинги</div>
+                    <h3>Новые RWA-токены на спотовом рынке Bitget UEX</h3>
+                    <p>Обзор свежих поступлений токенизированных активов традиционного сектора экономики. Перспективы и объемы торгов.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Предупреждение о рисках: Торговля цифровыми активами и фьючерсами сопряжена с высоким уровнем финансовых рисков. Прошлые результаты не гарантируют будущих доходов. Данный ресурс носит исключительно информационный характер и не является индивидуальной инвестиционной рекомендацией.</p>
+        <p style="margin-top: 15px;">&copy; 2026 Bitget Analytics. Все права защищены.</p>
+    </footer>
+
+</body>
+  </html>
+  
