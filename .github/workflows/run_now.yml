@@ -1,24 +1,26 @@
 name: Manual Launch
 
 on:
-  workflow_dispatch: # Это создаёт кнопку ручного запуска
+  workflow_dispatch:
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
-    - name: Install
+    - name: Install Dependencies
       run: pip install requests
 
-    - name: Run
+    - name: Run Script
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: python bot.py
