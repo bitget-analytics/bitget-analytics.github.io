@@ -41,7 +41,6 @@
         let currentLang = 'ru';
         let allArticles = [];
 
-        // Переключение языков
         function setLang(lang) {
             currentLang = lang;
             ['ru', 'en', 'es'].forEach(l => {
@@ -49,26 +48,21 @@
             });
             document.getElementById(`btn-${lang}`).classList.add('active-lang');
             
-            // Обновление интерфейса
             const titles = { ru: 'Поток сигналов и аналитики', en: 'Live Signal & Analytics Feed', es: 'Flujo de Señales y Analítica' };
             document.getElementById('feed-title').innerText = titles[lang];
             
             renderFeed();
         }
 
-        // Поиск сгенерированных роботом файлов через GitHub API
         async function loadArticles() {
             const repo = "bitget-analytics/bitget-analytics.github.io";
             try {
-                // Запрашиваем список файлов в папке articles
                 const response = await fetch(`https://api.github.com/repos/${repo}/contents/articles`);
                 if (!response.ok) throw new Error('No articles yet');
                 const files = await response.json();
                 
-                // Сортируем файлы по имени (времени создания), чтобы новые были сверху
                 files.sort((a, b) => b.name.localeCompare(a.name));
 
-                // Скачиваем данные каждого файла
                 allArticles = await Promise.all(files.map(async file => {
                     const res = await fetch(file.download_url);
                     return await res.json();
@@ -78,19 +72,18 @@
             } catch (err) {
                 document.getElementById('analytics-feed').innerHTML = `
                     <div class="text-gray-500 text-sm py-8 text-center border border-dashed border-gray-800 rounded">
-                        ${currentLang === 'ru' ? 'Скрипт ещё не совершил первый прогон. Запустите Manual Launch в Actions.' : 'Waiting for the first automated workflow run.'}
+                        Ожидание первой публикации контента...
                     </div>`;
             }
         }
 
-        // Отрисовка ленты на выбранном языке
         function renderFeed() {
             if (allArticles.length === 0) return;
             const container = document.getElementById('analytics-feed');
             container.innerHTML = '';
 
             allArticles.forEach(art => {
-                const data = art[currentLang] || art['ru']; // если перевода нет, берем ру
+                const data = art[currentLang] || art['ru'];
                 
                 const card = document.createElement('div');
                 card.className = "bg-gray-900 border border-gray-800 rounded p-5 hover:border-gray-700 transition duration-200";
@@ -109,7 +102,6 @@
             });
         }
 
-        // Старт при загрузке
         loadArticles();
     </script>
 </body>
